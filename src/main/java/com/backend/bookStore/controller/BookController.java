@@ -55,14 +55,9 @@ public class BookController {
             int service = bookService.updateQuantity(id, quantity);
             System.out.println(service);
             return ResponseEntity.ok().build();
-//            } else {
-//                return ResponseEntity.notFound().build();
-//            }
         } catch (ArithmeticException e) {
-            System.out.println(e);
             return ResponseEntity.notFound().build();
         } catch (RuntimeException e) {
-            System.out.println(e);
             return ResponseEntity.status(500).build();
         }
     }

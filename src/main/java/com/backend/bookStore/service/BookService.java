@@ -34,7 +34,6 @@ public class BookService {
     }
 
     public int updateQuantity(Integer id, Integer quantity) {
-        System.out.println("service eeee");
         Optional<BookEntity> BookRepository = bookRepository.findById(id);
         if (!BookRepository.isPresent()) {
             throw new ArithmeticException("not found" + id);
