@@ -19,11 +19,13 @@ public class BookController {
     @GetMapping(path = "/getAll")
 
     public ResponseEntity<List<BookEntity>> getAllBooks(
-            @RequestParam("pageNo") Integer pageNo,
-            @RequestParam("pageSize") Integer pageSize
+//            @RequestParam("pageNo") Integer pageNo,
+//            @RequestParam("pageSize") Integer pageSize
     ) {
         try {
-            List<BookEntity> books = bookService.getAllBooks(pageNo, pageSize);
+//            System.out.println(pageNo+pageSize);
+            List<BookEntity> books = bookService.getAllBooks();
+            System.out.println(books);
             return ResponseEntity.ok().body(books);
         } catch (Exception e) {
             System.out.println("EException" + e);

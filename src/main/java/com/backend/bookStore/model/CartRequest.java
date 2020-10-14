@@ -1,34 +1,26 @@
-package com.backend.bookStore.entity;
+package com.backend.bookStore.model;
 
-import com.sun.istack.NotNull;
+import com.backend.bookStore.entity.CartEntity;
 
-import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Objects;
 
-@Entity
-public class BookEntity {
-    @NotNull
+public class CartRequest {
     private String _id;
-    @Id
     private Integer id;
-    @NotNull
     private String author;
-    @NotNull
     private String title;
-    @NotNull
     private String image;
-    @NotNull
     private Integer quantity;
-    @NotNull
     private Integer price;
-    @NotNull
     private String description;
+    private String noOfBooks;
+    private String phoneNumber;
 
-    public BookEntity() {
-
+    public CartRequest() {
     }
 
-    public BookEntity(String _id, Integer id, String author, String title, String image, Integer quantity, Integer price, String description) {
+    public CartRequest(String _id, Integer id, String author, String title, String image, Integer quantity, Integer price, String description, String noOfBooks, String phoneNumber) {
         this._id = _id;
         this.id = id;
         this.author = author;
@@ -37,6 +29,8 @@ public class BookEntity {
         this.quantity = quantity;
         this.price = price;
         this.description = description;
+        this.noOfBooks = noOfBooks;
+        this.phoneNumber = phoneNumber;
     }
 
     public String get_id() {
@@ -103,11 +97,28 @@ public class BookEntity {
         this.description = description;
     }
 
+    public String getNoOfBooks() {
+        return noOfBooks;
+    }
+
+    public void setNoOfBooks(String noOfBooks) {
+        this.noOfBooks = noOfBooks;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookEntity that = (BookEntity) o;
+        CartRequest that = (CartRequest) o;
         return Objects.equals(_id, that._id) &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(author, that.author) &&
@@ -115,17 +126,19 @@ public class BookEntity {
                 Objects.equals(image, that.image) &&
                 Objects.equals(quantity, that.quantity) &&
                 Objects.equals(price, that.price) &&
-                Objects.equals(description, that.description);
+                Objects.equals(description, that.description) &&
+                Objects.equals(noOfBooks, that.noOfBooks) &&
+                Objects.equals(phoneNumber, that.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, id, author, title, image, quantity, price, description);
+        return Objects.hash(_id, id, author, title, image, quantity, price, description, noOfBooks, phoneNumber);
     }
 
     @Override
     public String toString() {
-        return "BookEntity{" +
+        return "CartRequest{" +
                 "_id='" + _id + '\'' +
                 ", id=" + id +
                 ", author='" + author + '\'' +
@@ -134,6 +147,14 @@ public class BookEntity {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", description='" + description + '\'' +
+                ", noOfBooks='" + noOfBooks + '\'' +
+                ", phoneNumber=" + phoneNumber +
                 '}';
+    }
+
+    public CartEntity toEntity(CartRequest cartRequest) {
+            return new CartEntity(cartRequest._id,cartRequest.id,cartRequest.author,
+                cartRequest.title,cartRequest.image,cartRequest.quantity
+                ,cartRequest.price,cartRequest.description,cartRequest.noOfBooks,cartRequest.phoneNumber);
     }
 }

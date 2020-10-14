@@ -18,14 +18,9 @@ public class BookService {
     @Autowired
     BookRepository bookRepository;
 
-    public List<BookEntity> getAllBooks(Integer pageNo, Integer pageSize) {
-        Pageable pageRequest = PageRequest.of(pageNo, pageSize);
-        System.out.println("pageRequest" + pageRequest);
-        Page<BookEntity> allBooks = bookRepository.findAll(pageRequest);
-        if (allBooks.hasContent()) {
-            return allBooks.getContent();
-        }
-        return new ArrayList<>();
+    public List<BookEntity> getAllBooks() {
+        List<BookEntity> allBooks = bookRepository.findAll();
+        return allBooks;
     }
 
     public BookEntity saveBook(BookRequest request) {
