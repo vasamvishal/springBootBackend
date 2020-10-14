@@ -17,7 +17,7 @@ public interface CustomerInfoRepository extends JpaRepository<CustomerInfoEntity
     CustomerInfoEntity findUserAndPassword(@Param("userName") String userName,
                                                  @Param("password") String password);
 
-    @Query("select c from CustomerInfoEntity c where  c.PhoneNumber=:phoneNumber and c.userName=:userName")
+    @Query("select c from CustomerInfoEntity c where  c.PhoneNumber=:phoneNumber or c.userName=:userName")
     CustomerInfoEntity findByPhoneNumberAndUserName(@Param("phoneNumber") String phoneNumber,@Param("userName") String userName);
 
     @Query("select c from CustomerInfoEntity c where c.userName=:userName")
@@ -26,4 +26,7 @@ public interface CustomerInfoRepository extends JpaRepository<CustomerInfoEntity
 
     @Query("select c from CustomerInfoEntity c where c.password=:password")
     CustomerInfoEntity findByPassword(@Param("password") String password);
+
+    @Query("select c from CustomerInfoEntity c where c.PhoneNumber=:phoneNumber")
+    CustomerInfoEntity findByPhoneNumber(@Param("phoneNumber") String phoneNumber);
 }

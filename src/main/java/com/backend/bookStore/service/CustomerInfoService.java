@@ -21,12 +21,16 @@ public class CustomerInfoService {
 
 
     public CustomerInfoEntity createCustomerInfo(CustomerInfoRequest customerInfo) {
-      CustomerInfoEntity customerPhoneNumber=customerInfoRepository.findByPhoneNumberAndUserName(customerInfo.getPhoneNumber(),customerInfo.getUserName());
-        System.out.println(customerPhoneNumber);
-      if(customerPhoneNumber != null){
+        System.out.println("customerPhoneNumber"+customerInfo.getUserName());
+        System.out.println("customerPhoneNumber"+customerInfo.getPhoneNumber());
+         CustomerInfoEntity customerPhoneNumber=customerInfoRepository.findByPhoneNumber(customerInfo.getPhoneNumber());
+        CustomerInfoEntity customerInfoUserName = customerInfoRepository.findByName(customerInfo.getUserName());
+        System.out.println("customerPhoneNumber"+customerPhoneNumber);
+        System.out.println("customerPhoneNumber"+customerInfoUserName);
+      if(customerInfoUserName != null || customerPhoneNumber !=null ){
           throw new ArithmeticException("User is already registered");
       }
-      else{
+      else {
           System.out.println("customerInfo"+customerInfo.getFirstName()+customerInfo.getLastName()
                   +customerInfo.getConfirmpassword()+customerInfo.getPhoneNumber()
                   +customerInfo.getUserName()+customerInfo.getPassword()+customerInfo.getEmail());
@@ -57,6 +61,5 @@ public class CustomerInfoService {
         List<CartEntity> getCustomer = cartRepository.findByname(phoneNumber);
         System.out.println("getCustomer"+getCustomer);
             return getCustomer;
-//        }
     }
 }

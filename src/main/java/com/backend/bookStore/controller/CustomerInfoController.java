@@ -30,6 +30,7 @@ public class CustomerInfoController {
     @PostMapping(path = "/post/customerInfoDetails")
     public ResponseEntity<CustomerInfoEntity> createCustomerInfo(@RequestBody CustomerInfoRequest customerInfo) {
         try {
+            System.out.println(customerInfo);
             CustomerInfoEntity data = customerInfoService.createCustomerInfo(customerInfo);
             if (data != null) {
                 System.out.println(data);
