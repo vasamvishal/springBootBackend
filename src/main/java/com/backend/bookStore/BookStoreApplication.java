@@ -29,7 +29,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/getAll","/login","/getCartDetails/{phoneNumber}",
 						"/delete/{phoneNumber}/{_id}","/post/cart","/post/customerInfoDetails",
-						"save/books","/save/booksAll").permitAll()
+						"save/books","/save/booksAll","/hello").permitAll()
  				.anyRequest().authenticated();
 	}
 }
