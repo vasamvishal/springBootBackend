@@ -11,16 +11,22 @@ public class BookEntity {
     private String _id;
     @Id
     private Integer id;
+    @Column(length = 2048)
     @NotNull
     private String author;
+    @Column(length = 2048)
     @NotNull
     private String title;
+
+    @Column(length = 2048)
     @NotNull
     private String image;
     @NotNull
     private Integer quantity;
     @NotNull
     private Integer price;
+
+    @Column(columnDefinition="text")
     @NotNull
     private String description;
 

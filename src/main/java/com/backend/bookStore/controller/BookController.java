@@ -41,6 +41,7 @@ public class BookController {
     @PostMapping(path = "/save/books")
     public ResponseEntity<Boolean> saveBooks(@RequestBody BookRequest request) {
         try {
+            System.out.println(request);
             BookEntity data = bookService.saveBook(request);
             if (data != null) {
                 return ResponseEntity.ok().body(Boolean.TRUE);
@@ -48,6 +49,26 @@ public class BookController {
                 return ResponseEntity.badRequest().build();
             }
         } catch (RuntimeException e) {
+            System.out.println(e);
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @PostMapping(path = "/save/booksAll")
+    public ResponseEntity<Boolean> saveAllBooks(@RequestBody List<BookRequest> request) {
+        try {
+            System.out.println(request.toString());
+            BookEntity data=new BookEntity();
+            for(int i=0;i<request.size();i++) {
+                data = bookService.saveBook(request.get(i));
+            }
+            if (data != null) {
+                return ResponseEntity.ok().body(Boolean.TRUE);
+            } else {
+                return ResponseEntity.badRequest().build();
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e);
             return ResponseEntity.status(500).build();
         }
     }

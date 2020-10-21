@@ -28,7 +28,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
 				.antMatchers("/getAll","/login","/getCartDetails/{phoneNumber}",
-						"/delete/{phoneNumber}/{_id}","/post/cart","/post/customerInfoDetails").permitAll()
+						"/delete/{phoneNumber}/{_id}","/post/cart","/post/customerInfoDetails",
+						"save/books","/save/booksAll").permitAll()
  				.anyRequest().authenticated();
 	}
 }

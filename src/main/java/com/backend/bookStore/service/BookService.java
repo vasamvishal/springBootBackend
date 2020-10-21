@@ -25,6 +25,7 @@ public class BookService {
 
     public BookEntity saveBook(BookRequest request) {
         BookEntity entity = request.toEntity(request);
+        System.out.println(entity.toString());
         return bookRepository.save(entity);
     }
 
