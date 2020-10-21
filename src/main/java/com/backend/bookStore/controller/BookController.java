@@ -33,6 +33,11 @@ public class BookController {
         }
     }
 
+    @GetMapping(path = "/hello")
+    public ResponseEntity<String> checkAccount() {
+        return ResponseEntity.ok().body("String");
+    }
+
     @PostMapping(path = "/save/books")
     public ResponseEntity<Boolean> saveBooks(@RequestBody BookRequest request) {
         try {
