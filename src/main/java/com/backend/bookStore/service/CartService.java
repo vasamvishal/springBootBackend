@@ -23,12 +23,12 @@ public class CartService {
         return cartRepository.findAll();
     }
 
-    public void deleteCartDetails(String phoneNumber, String _id) {
+    public void deleteCartDetails(String phoneNumber, String id) {
         List<CartEntity> cartEntities = cartRepository.findByname(phoneNumber);
         if (cartEntities.size() > 0) {
-            List<CartEntity> cartEntities1 = cartRepository.findByID(_id);
+            List<CartEntity> cartEntities1 = cartRepository.findByID(id);
             if (cartEntities1.size() > 0) {
-                cartRepository.delete(phoneNumber, _id);
+                cartRepository.delete(phoneNumber, id);
             } else {
                 throw new ArithmeticException("ID is not found");
             }

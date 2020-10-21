@@ -50,4 +50,21 @@ public class CartController {
           return ResponseEntity.status(500).body(e);
       }
     }
+
+//    @DeleteMapping(path = "/delete/{phoneNumber}")
+//    public ResponseEntity<Object> deleteCartDetails(@PathVariable String phoneNumber,@RequestBody List<CartRequest> cartRequest ){
+//        try {
+//            for(int i=0;i<cartRequest.size();i++){
+//                System.out.println(cartRequest.get(i).get_id());
+//                cartService.deleteCartDetails(phoneNumber,cartRequest.get(i).get_id());
+//            }
+//            return ResponseEntity.ok().build();
+//        }
+//        catch (ArithmeticException e){
+//            return ResponseEntity.badRequest().body(e);
+//        }
+//        catch (RuntimeException e) {
+//            return ResponseEntity.status(500).body(e);
+//        }
+//    }
 }

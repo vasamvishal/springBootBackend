@@ -2,7 +2,6 @@ package com.backend.bookStore.model;
 
 import com.backend.bookStore.entity.CartEntity;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 public class CartRequest {
