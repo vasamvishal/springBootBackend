@@ -13,15 +13,22 @@ public class CartEntity {
         @Id
         private Integer id;
         @NotNull
+        @Column(length = 2048)
+
         private String author;
+        @Column(length = 2048)
         @NotNull
         private String title;
+
+        @Column(length = 2048)
         @NotNull
         private String image;
         @NotNull
         private Integer quantity;
         @NotNull
         private Integer price;
+
+        @Column(columnDefinition="text")
         @NotNull
         private String description;
         @NotNull
