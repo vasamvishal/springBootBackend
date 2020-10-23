@@ -26,7 +26,7 @@ public class CustomerInfoController {
     @Autowired
     CustomerInfoService customerInfoService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://xbay.herokuapp.com/")
     @PostMapping(path = "/post/customerInfoDetails")
     public ResponseEntity<CustomerInfoEntity> createCustomerInfo(@RequestBody CustomerInfoRequest customerInfo) {
         try {
@@ -46,7 +46,7 @@ public class CustomerInfoController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000",exposedHeaders = "token",allowCredentials = "true")
+    @CrossOrigin(origins = "https://xbay.herokuapp.com/",exposedHeaders = "token",allowCredentials = "true")
     @PostMapping(path = "/login")
     public ResponseEntity<String> createCustomer(@RequestBody Login login, HttpServletResponse response) {
         try {
@@ -68,7 +68,7 @@ public class CustomerInfoController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://xbay.herokuapp.com/")
     @GetMapping(path = "/getCartDetails/{phoneNumber}")
     public ResponseEntity<List<CartEntity>> getCartDetails(@PathVariable("phoneNumber") String phoneNumber){
         System.out.println(phoneNumber);
