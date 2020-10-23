@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "https://xbay.herokuapp.com/")
+@CrossOrigin(origins = "*")
 @Controller
 public class BookController {
     @Autowired
