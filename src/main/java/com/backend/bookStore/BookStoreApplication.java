@@ -27,7 +27,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers("/getAll","/login","/getCartDetails/{phoneNumber}",
+				.antMatchers("https://xbay.herokuapp.com/getAll","/login","/getCartDetails/{phoneNumber}",
 						"/delete/{phoneNumber}/{_id}","/post/cart","/post/customerInfoDetails",
 						"save/books","/save/booksAll","/hello").permitAll()
  				.anyRequest().authenticated();
