@@ -68,7 +68,7 @@ public class CustomerInfoController {
         }
     }
 
-    @CrossOrigin(origins = "https://xbay.herokuapp.com/")
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "/getCartDetails/{phoneNumber}")
     public ResponseEntity<List<CartEntity>> getCartDetails(@PathVariable("phoneNumber") String phoneNumber){
         System.out.println(phoneNumber);
