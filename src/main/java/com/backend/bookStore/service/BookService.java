@@ -37,4 +37,22 @@ public class BookService {
             return bookRepository.updateQuantity(id, quantity);
         }
     }
+
+    public List<BookEntity> getAllBooks(Integer pageNo, Integer pageSize) {
+        Pageable pageRequest = PageRequest.of(pageNo, pageSize);
+        System.out.println("pageRequest" + pageRequest);
+        Page<BookEntity> allBooks = bookRepository.findAll(pageRequest);
+        if (allBooks.hasContent()) {
+            return allBooks.getContent();
+        }
+        return new ArrayList<>();
+    }
+
+    public int getCountOfBooks() {
+        return bookRepository.getCountOfBooks();
+    }
+
+    public List<BookEntity> searchBook(String search) {
+        return bookRepository.searchBook(search);
+    }
 }
