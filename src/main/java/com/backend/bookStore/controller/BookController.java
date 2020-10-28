@@ -24,13 +24,10 @@ public class BookController {
             @RequestParam("pageSize") Integer pageSize
     ) {
         try {
-//            System.out.println(pageNo+pageSize);
-//            List<BookEntity> books = bookService.getAllBooks();
             List<BookEntity> books = bookService.getAllBooks(pageNo, pageSize);
             System.out.println(books);
             return ResponseEntity.ok().body(books);
         } catch (Exception e) {
-            System.out.println("EException" + e);
             return ResponseEntity.status(500).build();
         }
     }
@@ -39,10 +36,8 @@ public class BookController {
     public ResponseEntity<Integer> getCountOfBooks() {
         try {
             int noOfBooks = bookService.getCountOfBooks();
-            System.out.println(noOfBooks);
             return ResponseEntity.ok().body(noOfBooks);
         } catch (Exception e) {
-            System.out.println("EException" + e);
             return ResponseEntity.status(500).build();
         }
     }
@@ -56,17 +51,9 @@ public class BookController {
     @GetMapping(path = "/searchBook")
     public ResponseEntity<List<BookEntity>> searchBook() {
         try {
-//            searchValue
-            List<BookEntity> booksDataResult=new ArrayList<>();
             List<BookEntity> bookData = bookService.getAllBooks();
-//            for(int i=0;i<bookData.size();i++) {
-//                if (bookData.get(i).getTitle().contains(search)) {
-//                    booksDataResult.add(bookData.get(i));
-//                }
-//            }
             return ResponseEntity.ok().body(bookData);
         } catch (RuntimeException e) {
-            System.out.println(e);
             return ResponseEntity.status(500).build();
         }
     }
@@ -90,7 +77,6 @@ public class BookController {
     @PostMapping(path = "/save/booksAll")
     public ResponseEntity<Boolean> saveAllBooks(@RequestBody List<BookRequest> request) {
         try {
-            System.out.println(request.toString());
             BookEntity data=new BookEntity();
             for(int i=0;i<request.size();i++) {
                 data = bookService.saveBook(request.get(i));
@@ -101,7 +87,6 @@ public class BookController {
                 return ResponseEntity.badRequest().build();
             }
         } catch (RuntimeException e) {
-            System.out.println(e);
             return ResponseEntity.status(500).build();
         }
     }
@@ -111,10 +96,7 @@ public class BookController {
             @RequestParam("id") Integer id,
             @RequestParam("quantity") Integer quantity) {
         try {
-            System.out.println("id" + id);
-            System.out.println("id" + quantity);
             int service = bookService.updateQuantity(id, quantity);
-            System.out.println(service);
             return ResponseEntity.ok().build();
         } catch (ArithmeticException e) {
             return ResponseEntity.notFound().build();

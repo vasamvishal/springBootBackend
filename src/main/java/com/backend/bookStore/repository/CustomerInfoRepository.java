@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface CustomerInfoRepository extends JpaRepository<CustomerInfoEntity,Integer> {
-//    @Transactional
-//    @Modifying
-//where c.firstName=:firstName and c.password=:password"
     @Query("select c from CustomerInfoEntity c where c.userName=:userName and c.password=:password")
     CustomerInfoEntity findUserAndPassword(@Param("userName") String userName,
                                                  @Param("password") String password);

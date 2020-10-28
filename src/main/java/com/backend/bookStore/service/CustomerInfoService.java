@@ -57,9 +57,11 @@ public class CustomerInfoService {
     }
 
     public List<CartEntity> getCustomerInfo(String phoneNumber) {
-        System.out.println("phonenumber"+phoneNumber);
         List<CartEntity> getCustomer = cartRepository.findByname(phoneNumber);
-        System.out.println("getCustomer"+getCustomer);
-            return getCustomer;
+        if (getCustomer != null) {
+           return getCustomer;
+        } else {
+            throw new ArithmeticException("Password is InCorrect");
+        }
     }
 }

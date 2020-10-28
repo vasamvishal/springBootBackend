@@ -15,11 +15,12 @@ public class CartRequest {
     private String description;
     private String noOfBooks;
     private String phoneNumber;
+    private String status;
 
     public CartRequest() {
     }
 
-    public CartRequest(String _id, Integer id, String author, String title, String image, Integer quantity, Integer price, String description, String noOfBooks, String phoneNumber) {
+    public CartRequest(String _id, Integer id, String author, String title, String image, Integer quantity, Integer price, String description, String noOfBooks, String phoneNumber, String status) {
         this._id = _id;
         this.id = id;
         this.author = author;
@@ -30,6 +31,7 @@ public class CartRequest {
         this.description = description;
         this.noOfBooks = noOfBooks;
         this.phoneNumber = phoneNumber;
+        this.status = status;
     }
 
     public String get_id() {
@@ -112,6 +114,13 @@ public class CartRequest {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -127,12 +136,13 @@ public class CartRequest {
                 Objects.equals(price, that.price) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(noOfBooks, that.noOfBooks) &&
-                Objects.equals(phoneNumber, that.phoneNumber);
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, id, author, title, image, quantity, price, description, noOfBooks, phoneNumber);
+        return Objects.hash(_id, id, author, title, image, quantity, price, description, noOfBooks, phoneNumber, status);
     }
 
     @Override
@@ -147,13 +157,15 @@ public class CartRequest {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", noOfBooks='" + noOfBooks + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 
     public CartEntity toEntity(CartRequest cartRequest) {
             return new CartEntity(cartRequest._id,cartRequest.id,cartRequest.author,
                 cartRequest.title,cartRequest.image,cartRequest.quantity
-                ,cartRequest.price,cartRequest.description,cartRequest.noOfBooks,cartRequest.phoneNumber);
+                ,cartRequest.price,cartRequest.description,cartRequest.noOfBooks
+                    ,cartRequest.phoneNumber,cartRequest.status);
     }
 }

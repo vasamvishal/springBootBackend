@@ -35,14 +35,17 @@ public class CartEntity {
         private String noOfBooks;
         @NotNull
         private String phoneNumber;
+        @NotNull
+        private String status;
 
     @ManyToOne
     private CustomerInfoEntity customerInfoEntity;
 
+
     public CartEntity() {
     }
 
-    public CartEntity(String _id, Integer id, String author, String title, String image, Integer quantity, Integer price, String description, String noOfBooks, String phoneNumber) {
+    public CartEntity(String _id, Integer id, String author, String title, String image, Integer quantity, Integer price, String description, String noOfBooks, String phoneNumber, String status) {
         this._id = _id;
         this.id = id;
         this.author = author;
@@ -53,6 +56,7 @@ public class CartEntity {
         this.description = description;
         this.noOfBooks = noOfBooks;
         this.phoneNumber = phoneNumber;
+        this.status = status;
     }
 
     public String get_id() {
@@ -135,12 +139,12 @@ public class CartEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public CustomerInfoEntity getCustomerInfoEntity() {
-        return customerInfoEntity;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCustomerInfoEntity(CustomerInfoEntity customerInfoEntity) {
-        this.customerInfoEntity = customerInfoEntity;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
@@ -158,12 +162,13 @@ public class CartEntity {
                 Objects.equals(description, that.description) &&
                 Objects.equals(noOfBooks, that.noOfBooks) &&
                 Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(status, that.status) &&
                 Objects.equals(customerInfoEntity, that.customerInfoEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, id, author, title, image, quantity, price, description, noOfBooks, phoneNumber, customerInfoEntity);
+        return Objects.hash(_id, id, author, title, image, quantity, price, description, noOfBooks, phoneNumber, status, customerInfoEntity);
     }
 
     @Override
@@ -179,6 +184,7 @@ public class CartEntity {
                 ", description='" + description + '\'' +
                 ", noOfBooks='" + noOfBooks + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", status='" + status + '\'' +
                 ", customerInfoEntity=" + customerInfoEntity +
                 '}';
     }

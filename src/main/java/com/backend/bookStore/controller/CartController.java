@@ -4,6 +4,7 @@ import com.backend.bookStore.entity.CartEntity;
 import com.backend.bookStore.model.CartRequest;
 import com.backend.bookStore.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +33,18 @@ public class CartController {
     }
 
     @GetMapping(path = "/get/cart")
-    public ResponseEntity<List<CartEntity>> getCartDetails(){
-        return ResponseEntity.ok().body(cartService.getCartDetails());
-//      return cartService.getCartDetails();
+    public ResponseEntity<List<CartEntity>> getCartDetails(
+            @RequestParam("status") String status){
+        try{
+            List<CartEntity> cartDetails=cartService.getCartDetails(status);
+            return ResponseEntity.ok().body(cartDetails);
+        }
+        catch (ArithmeticException e){
+            return ResponseEntity.badRequest().build();
+        }
+        catch (RuntimeException e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @DeleteMapping(path = "/delete/{phoneNumber}/{_id}")
@@ -50,21 +60,4 @@ public class CartController {
           return ResponseEntity.status(500).body(e);
       }
     }
-
-//    @DeleteMapping(path = "/delete/{phoneNumber}")
-//    public ResponseEntity<Object> deleteCartDetails(@PathVariable String phoneNumber,@RequestBody List<CartRequest> cartRequest ){
-//        try {
-//            for(int i=0;i<cartRequest.size();i++){
-//                System.out.println(cartRequest.get(i).get_id());
-//                cartService.deleteCartDetails(phoneNumber,cartRequest.get(i).get_id());
-//            }
-//            return ResponseEntity.ok().build();
-//        }
-//        catch (ArithmeticException e){
-//            return ResponseEntity.badRequest().body(e);
-//        }
-//        catch (RuntimeException e) {
-//            return ResponseEntity.status(500).body(e);
-//        }
-//    }
 }

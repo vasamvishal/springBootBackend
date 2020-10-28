@@ -19,8 +19,8 @@ public class CartService {
         return cartRepository.save(cartEntity);
     }
 
-    public List<CartEntity> getCartDetails() {
-        return cartRepository.findAll();
+    public List<CartEntity> getCartDetails(String status) {
+        return cartRepository.findByStatus(status);
     }
 
     public void deleteCartDetails(String phoneNumber, String id) {

@@ -72,9 +72,14 @@ public class CustomerInfoController {
     @GetMapping(path = "/getCartDetails/{phoneNumber}")
     public ResponseEntity<List<CartEntity>> getCartDetails(@PathVariable("phoneNumber") String phoneNumber){
         System.out.println(phoneNumber);
-        List<CartEntity> cartEntity = customerInfoService.getCustomerInfo(phoneNumber);
-        System.out.println("CARYr"+cartEntity);
-        return ResponseEntity.ok().body(cartEntity);
+        try {
+            List<CartEntity> cartEntity = customerInfoService.getCustomerInfo(phoneNumber);
+            return ResponseEntity.ok().body(cartEntity);
+        }catch (ArithmeticException e) {
+        return ResponseEntity.badRequest().build();
+        } catch (RuntimeException e) {
+        return ResponseEntity.status(500).build();
+        }
     }
 
     private String getJwtToken(String phoneNumber) {

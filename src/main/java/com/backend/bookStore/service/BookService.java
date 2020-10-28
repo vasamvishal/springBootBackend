@@ -20,12 +20,14 @@ public class BookService {
 
     public List<BookEntity> getAllBooks() {
         List<BookEntity> allBooks = bookRepository.findAll();
-        return allBooks;
+        if (allBooks!=null) {
+            return allBooks;
+        }
+        throw new ArithmeticException("Not Found");
     }
 
     public BookEntity saveBook(BookRequest request) {
         BookEntity entity = request.toEntity(request);
-        System.out.println(entity.toString());
         return bookRepository.save(entity);
     }
 
@@ -40,7 +42,6 @@ public class BookService {
 
     public List<BookEntity> getAllBooks(Integer pageNo, Integer pageSize) {
         Pageable pageRequest = PageRequest.of(pageNo, pageSize);
-        System.out.println("pageRequest" + pageRequest);
         Page<BookEntity> allBooks = bookRepository.findAll(pageRequest);
         if (allBooks.hasContent()) {
             return allBooks.getContent();
